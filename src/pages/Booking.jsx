@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Select from "react-select"; // Import react-select
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -22,11 +23,17 @@ const Booking = () => {
     "Dr. Sarah Davis - Pediatrician"
   ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const genderOptions = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+    { value: "Other", label: "Other" }
+  ];
+
+  const handleChange = (selectedOption, actionMeta) => {
+    const { name } = actionMeta;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: selectedOption.value
     }));
   };
 
@@ -54,9 +61,9 @@ const Booking = () => {
               name="name"
               placeholder="Full Name"
               value={formData.name}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target, { name: "name" })}
               required
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             />
 
             <div className="grid grid-cols-2 gap-4">
@@ -65,22 +72,37 @@ const Booking = () => {
                 name="age"
                 placeholder="Age"
                 value={formData.age}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target, { name: "age" })}
                 required
-                className="p-3 border rounded-lg"
+                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               />
-              <select
+              <Select
                 name="gender"
-                value={formData.gender}
+                options={genderOptions}
+                placeholder="Select Gender"
+                value={genderOptions.find((option) => option.value === formData.gender)}
                 onChange={handleChange}
-                required
-                className="p-3 border rounded-lg bg-white text-black"
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
+                styles={{
+                  option: (provided, state) => ({
+                    ...provided,
+                    backgroundColor: state.isFocused
+                      ? "lightgreen" // hover background
+                      : state.isSelected
+                      ? "green" // selected background
+                      : "white",
+                    color: state.isSelected ? "white" : "black"
+                  }),
+                  control: (provided) => ({
+                    ...provided,
+                    borderRadius: "0.5rem",
+                    borderColor: "#065f46", // Tailwind's cura-600 color
+                    boxShadow: "none",
+                    "&:hover": {
+                      borderColor: "#065f46"
+                    }
+                  })
+                }}
+              />
             </div>
 
             <input
@@ -88,26 +110,39 @@ const Booking = () => {
               name="contact"
               placeholder="Contact Number"
               value={formData.contact}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target, { name: "contact" })}
               required
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             />
 
             {/* Doctor Selection */}
-            <select
-              name="doctor"
-              value={formData.doctor}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border rounded-lg"
-            >
-              <option value="">Select Doctor</option>
-              {doctors.map((doc, index) => (
-                <option key={index} value={doc}>
-                  {doc}
-                </option>
-              ))}
-            </select>
+            <Select
+  name="doctor"
+  options={doctors.map((doc) => ({ value: doc, label: doc }))}
+  placeholder="Select Doctor"
+  value={doctors.map((doc) => ({ value: doc, label: doc })).find((option) => option.value === formData.doctor)}
+  onChange={(selectedOption) => handleChange(selectedOption, { name: "doctor" })}
+  styles={{
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused
+        ? "lightgreen" // hover background
+        : state.isSelected
+        ? "green" // selected background
+        : "white",
+      color: state.isSelected ? "white" : "black"
+    }),
+    control: (provided) => ({
+      ...provided,
+      borderRadius: "0.5rem",
+      borderColor: "#065f46", // Tailwind's cura-600 color
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#065f46"
+      }
+    })
+  }}
+/>
 
             {/* Date & Time */}
             <div className="grid grid-cols-2 gap-4">
@@ -115,17 +150,17 @@ const Booking = () => {
                 type="date"
                 name="date"
                 value={formData.date}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target, { name: "date" })}
                 required
-                className="p-3 border rounded-lg"
+                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               />
               <input
                 type="time"
                 name="time"
                 value={formData.time}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target, { name: "time" })}
                 required
-                className="p-3 border rounded-lg"
+                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               />
             </div>
 
@@ -134,9 +169,9 @@ const Booking = () => {
               name="purpose"
               placeholder="Appointment Purpose"
               value={formData.purpose}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target, { name: "purpose" })}
               required
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             />
 
             {/* Payment */}
@@ -158,7 +193,7 @@ const Booking = () => {
         ) : (
           <div className="text-center">
             <h3 className="text-xl font-semibold text-green-600 mb-4">
-               Appointment Submitted Successfully!
+              Appointment Submitted Successfully!
             </h3>
             <p className="text-gray-600">
               Your appointment is <strong>under review</strong>.  
