@@ -1,10 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import AppLayout from '../layouts/AppLayout'
-import VitalCard from '../components/VitalCard'
-import VitalsChart from '../components/VitalsChart'
 import { useEffect, useState } from 'react'
-import { HealthAPI } from '../services/api'
-import { Card, CardHeader } from '../components/Card'
 
 const hospitalsData = [
   { id: 1, name: "City Care Hospital", location: "Chennai", specialties: ["Cardiology", "Orthopedics"] },
