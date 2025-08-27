@@ -10,6 +10,7 @@ import Signup from './pages/Signup'
 import { useAuth } from './context/auth'
 import Home from "./pages/Home";
 import HospitalProfile from "./pages/HospitalProfile";
+import Booking from './pages/Booking';
 
 function Private({ children }) {
   const { token } = useAuth()
@@ -31,6 +32,7 @@ export default function App() {
       <Route path="/alerts" element={<Private><Alerts /></Private>} />
       <Route path="/records" element={<Private><Records /></Private>} />
       <Route path="/settings" element={<Private><Settings /></Private>} />
+      <Route path="/booking" element={<Booking />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
