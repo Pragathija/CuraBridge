@@ -19,6 +19,7 @@ function Private({ children }) {
 
 export default function App() {
   return (
+
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
@@ -34,5 +35,6 @@ export default function App() {
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+
   )
 }

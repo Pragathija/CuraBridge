@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../components/Button'
 import { useAuth } from '../context/auth'
+import axios from 'axios'
 
 export default function Signup() {
   const [email, setEmail] = useState('')
@@ -9,34 +10,24 @@ export default function Signup() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [role, setRole] = useState('')
   const { login } = useAuth()
   const navigate = useNavigate()
 
-  async function onSubmit(e) {
+  function onSubmit(e) {
     e.preventDefault()
-    if (password !== confirmPassword) {
-      setError('Passwords do not match')
-      return
-    }
-    setError('')
-    // Send data to backend
-    const res = await fetch('http://localhost:5000/api/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, name, password })
+    axios.post('http://localhost:5000/signup', {name, email, password, role})
+    .then(result => {
+      console.log(result)
+      navigate('/')
     })
-    if (res.ok) {
-      navigate('/login')
-    } else {
-      const data = await res.json()
-      setError(data.message || 'Signup failed')
-    }
+    .catch(err => console.log(err))
   }
 
   return (
     <div className="min-h-screen grid place-items-center bg-[url('bgc1.jpg')] bg-cover bg-center from-cura-50 to-white">
       <form onSubmit={onSubmit} className="w-[380px] max-w-full bg-white shadow rounded-2xl p-6 space-y-4">
-        <h1 className="text-2xl font-bold text-cura-700">Create your Cura account</h1>
+        <h1 className="text-2xl text-center font-bold text-cura-700">Create your Cura account</h1>
         <label className="block">
           <span className="text-sm text-slate-600">Name</span>
           <input
@@ -80,6 +71,36 @@ export default function Signup() {
             placeholder="Confirm your Password"
           />
         </label>
+        <label className="block">
+          <span className="text-sm text-slate-600">Select Role</span>
+          <div className="flex gap-6 mt-2">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="role"
+                value="Doctor"
+                checked={role === 'Doctor'}
+                onChange={e => setRole(e.target.value)}
+                required
+                className="mr-2 accent-cura-500"
+              />
+              Doctor
+            </label>
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="role"
+                value="Patient"
+                checked={role === 'Patient'}
+                onChange={e => setRole(e.target.value)}
+                required
+                className="mr-2 accent-cura-500"
+              />
+              Patient
+            </label>
+          </div>
+        </label>
+
         {error && <div className="text-red-500 text-sm">{error}</div>}
         <Button className="w-full">Sign up</Button>
         <p className="text-sm text-slate-500">Have an account? <Link to="/login" className="text-cura-700 font-medium">Log in</Link></p>

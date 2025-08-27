@@ -1,51 +1,38 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const bcrypt = require('bcryptjs')
+const User = require('./models/Items')
+
+const app = express();
 
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/curabridge', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect("mongodb://localhost:27017/Login")
+
+app.post('/login', (req, res) => {
+  User.create(req.body)
+  const {email, password} = req.body;
+  User.findOne({email: email})
+  .then(user => {
+    if (user) {
+        if(user.password === password) {
+          res.json({ message: 'Login successful', user });
+        } else {
+          res.json({ message: 'Invalid credentials' });
+        }
+    } else {
+       res.json({ message: 'User not found' });
+    }
+
+  })
+})
+app.post('/signup', (req, res) => {
+  User.create(req.body)
+  .then(Users => res.json(Users))
+  .catch(err => res.json(err))
 })
 
-
-// User schema
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: { type: String, unique: true },
-  password: String,
-  confirmPassword: String
-})
-const User = mongoose.model('User', userSchema)
-
-// Patient schema (example)
-const patientSchema = new mongoose.Schema({
-  name: String,
-  age: Number,
-  diagnosis: String,
-  // Add more fields as needed
-})
-const Patient = mongoose.model('Patient', patientSchema)
-
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-
-const app = express();
-app.use(express.json());
-app.use(cors());
-
-mongoose.connect("mongodb+srv://praga007thija:GGjYz24OlNuOIgno@praga-007.ei9veqm.mongodb.net/myApp", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log(" MongoDB Connected"))
-.catch((err) => console.error(err));
-
-
-app.listen(5173, () => {
-  console.log('Server running on http://localhost:5173')
+app.listen(5000, () => {
+  console.log('Server running on http://localhost:5000')
 })
