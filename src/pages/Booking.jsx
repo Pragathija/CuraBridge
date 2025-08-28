@@ -63,7 +63,7 @@ const Booking = () => {
               value={formData.name}
               onChange={(e) => handleChange(e.target, { name: "name" })}
               required
-              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-cura-500 focus:border-cura-500"
             />
 
             <div className="grid grid-cols-2 gap-4">
@@ -74,7 +74,7 @@ const Booking = () => {
                 value={formData.age}
                 onChange={(e) => handleChange(e.target, { name: "age" })}
                 required
-                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-cura-500 focus:border-cura-500"
               />
               <Select
                 name="gender"
@@ -86,19 +86,19 @@ const Booking = () => {
                   option: (provided, state) => ({
                     ...provided,
                     backgroundColor: state.isFocused
-                      ? "lightgreen" // hover background
+                      ? "#2ab891" // hover background
                       : state.isSelected
-                      ? "green" // selected background
-                      : "white",
+                        ? "#167b62" // selected background
+                        : "white",
                     color: state.isSelected ? "white" : "black"
                   }),
                   control: (provided) => ({
                     ...provided,
                     borderRadius: "0.5rem",
-                    borderColor: "#065f46", // Tailwind's cura-600 color
+                    borderColor: "#2ab891", // Tailwind's cura-600 color
                     boxShadow: "none",
                     "&:hover": {
-                      borderColor: "#065f46"
+                      borderColor: "#167b62"
                     }
                   })
                 }}
@@ -112,37 +112,37 @@ const Booking = () => {
               value={formData.contact}
               onChange={(e) => handleChange(e.target, { name: "contact" })}
               required
-              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-cura-500 focus:border-cura-500"
             />
 
             {/* Doctor Selection */}
             <Select
-  name="doctor"
-  options={doctors.map((doc) => ({ value: doc, label: doc }))}
-  placeholder="Select Doctor"
-  value={doctors.map((doc) => ({ value: doc, label: doc })).find((option) => option.value === formData.doctor)}
-  onChange={(selectedOption) => handleChange(selectedOption, { name: "doctor" })}
-  styles={{
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isFocused
-        ? "lightgreen" // hover background
-        : state.isSelected
-        ? "green" // selected background
-        : "white",
-      color: state.isSelected ? "white" : "black"
-    }),
-    control: (provided) => ({
-      ...provided,
-      borderRadius: "0.5rem",
-      borderColor: "#065f46", // Tailwind's cura-600 color
-      boxShadow: "none",
-      "&:hover": {
-        borderColor: "#065f46"
-      }
-    })
-  }}
-/>
+              name="doctor"
+              options={doctors.map((doc) => ({ value: doc, label: doc }))}
+              placeholder="Select Doctor"
+              value={doctors.map((doc) => ({ value: doc, label: doc })).find((option) => option.value === formData.doctor)}
+              onChange={(selectedOption) => handleChange(selectedOption, { name: "doctor" })}
+              styles={{
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isFocused
+                    ? "#2ab891" // hover background
+                    : state.isSelected
+                      ? "#167b62" // selected background
+                      : "white",
+                  color: state.isSelected ? "white" : "black"
+                }),
+                control: (provided) => ({
+                  ...provided,
+                  borderRadius: "0.5rem",
+                  borderColor: "#2ab891", // Tailwind's cura-600 color
+                  boxShadow: "none",
+                  "&:hover": {
+                    borderColor: "#167b62"
+                  }
+                })
+              }}
+            />
 
             {/* Date & Time */}
             <div className="grid grid-cols-2 gap-4">
@@ -152,7 +152,7 @@ const Booking = () => {
                 value={formData.date}
                 onChange={(e) => handleChange(e.target, { name: "date" })}
                 required
-                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-cura-500 focus:border-cura-500"
               />
               <input
                 type="time"
@@ -160,7 +160,7 @@ const Booking = () => {
                 value={formData.time}
                 onChange={(e) => handleChange(e.target, { name: "time" })}
                 required
-                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-cura-500 focus:border-cura-500"
               />
             </div>
 
@@ -171,7 +171,7 @@ const Booking = () => {
               value={formData.purpose}
               onChange={(e) => handleChange(e.target, { name: "purpose" })}
               required
-              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="w-full p-3 border rounded-lg appearance-none focus:ring-2 focus:ring-cura-500 focus:border-cura-500"
             />
 
             {/* Payment */}
@@ -196,7 +196,7 @@ const Booking = () => {
               Appointment Submitted Successfully!
             </h3>
             <p className="text-gray-600">
-              Your appointment is <strong>under review</strong>.  
+              Your appointment is <strong>under review</strong>.
               You will receive a notification once the doctor accepts.
             </p>
           </div>

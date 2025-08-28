@@ -2,9 +2,16 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const hospitalsData = [
-  { id: 1, name: "City Care Hospital", location: "Chennai", description: "Best in cardiology and orthopedics care." },
-  { id: 2, name: "Green Valley Medical Center", location: "Bangalore", description: "Specialized in neurology and pediatrics." },
-  { id: 3, name: "Sunrise Health Clinic", location: "Mumbai", description: "Focused on dermatology and ENT treatments." },
+  { id: 1, name: "City Care Hospital", location: "Chennai", specialties: ["Cardiology", "Orthopedics"] },
+  { id: 2, name: "Green Valley Medical Center", location: "Bangalore", specialties: ["Neurology", "Pediatrics"] },
+  { id: 3, name: "Sunrise Health Clinic", location: "Mumbai", specialties: ["Dermatology", "ENT"] },
+  { id: 4, name: "Health Clinic", location: "Delhi", specialties: ["Neurology", "Brain Surgery"] },
+  { id: 5, name: "Wellness Hospital", location: "Hyderabad", specialties: ["Gastroenterology", "Urology"] },
+  { id: 6, name: "Care & Cure Hospital", location: "Kolkata", specialties: ["Oncology", "Gynecology"] },
+  { id: 7, name: "LifeLine Medical Center", location: "Pune", specialties: ["Psychiatry", "Endocrinology"] },
+  { id: 8, name: "Harmony Health Institute", location: "Chennai", specialties: ["Rheumatology", "Pulmonology"] },
+  { id: 9, name: "Prime Health Hospital", location: "Bangalore", specialties: ["Nephrology", "Ophthalmology"] },
+  { id: 10, name: "City Health Center", location: "Delhi", specialties: ["General Medicine", "Pediatrics"] }
 ];
 
 const HospitalProfile = () => {
