@@ -6,4 +6,4 @@ export const useAuth = create(persist((set) => ({
   token: null,
   login: (user, token) => set({ user, token }),
   logout: () => set({ user: null, token: null }),
-}), { name: 'cura-auth' }))
+}), { name: 'cura-auth', getStorage: () => localStorage }))

@@ -46,7 +46,7 @@ const Home = () => {
             <div
               key={hospital.id}
               onClick={() => handleSelect(hospital.id)}
-              className="p-4 bg-white shadow rounded-lg cursor-pointer hover:shadow-lg transition"
+              className="p-8 bg-white shadow rounded-lg cursor-pointer hover:shadow-lg transition"
             >
               <h2 className="text-xl font-semibold">{hospital.name}</h2>
               <p className="text-gray-600">{hospital.location}</p>
@@ -57,6 +57,8 @@ const Home = () => {
 
           ))}
         </div>
+        <br></br>
+        <br></br>
       </div>
 
     </AppLayout>

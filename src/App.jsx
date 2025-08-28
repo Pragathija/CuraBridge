@@ -8,9 +8,9 @@ import Settings from './pages/Settings'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import { useAuth } from './context/auth'
-import Home from "./pages/Home";
-import HospitalProfile from "./pages/HospitalProfile";
-import Booking from './pages/Booking';
+import Home from "./pages/Home"
+import HospitalProfile from "./pages/HospitalProfile"
+import Booking from './pages/Booking'
 
 function Private({ children }) {
   const { token } = useAuth()

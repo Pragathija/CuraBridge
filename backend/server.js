@@ -1,38 +1,68 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
-const User = require('./models/Items')
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 
-const app = express();
+admin.initializeApp();
+const auth = admin.auth();
 
-app.use(cors())
-app.use(express.json())
+/**
+ * Signup Cloud Function
+ */
+exports.signup = functions.https.onRequest(async (req, res) => {
+  try {
+    const { email, password, name, role } = req.body;
 
-mongoose.connect("mongodb://localhost:27017/Login")
+    // create firebase user
+    const userRecord = await auth.createUser({
+      email,
+      password,
+      displayName: name,
+    });
 
-app.post('/login', (req, res) => {
-  User.create(req.body)
-  const {email, password} = req.body;
-  User.findOne({email: email})
-  .then(user => {
-    if (user) {
-        if(user.password === password) {
-          res.json({ message: 'Login successful', user });
-        } else {
-          res.json({ message: 'Invalid credentials' });
-        }
-    } else {
-       res.json({ message: 'User not found' });
-    }
+    // add custom claims for role
+    await auth.setCustomUserClaims(userRecord.uid, { role });
 
-  })
-})
-app.post('/signup', (req, res) => {
-  User.create(req.body)
-  .then(Users => res.json(Users))
-  .catch(err => res.json(err))
-})
+    res.status(200).json({
+      message: "Signup successful",
+      user: {
+        uid: userRecord.uid,
+        email: userRecord.email,
+        name: userRecord.displayName,
+        role,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: error.message });
+  }
+});
 
-app.listen(5000, () => {
-  console.log('Server running on http://localhost:5000')
-})
+/**
+ * Login Cloud Function
+ * (Better: use Firebase Client SDK for login, but if you want endpoint…)
+ */
+exports.login = functions.https.onRequest(async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Normally you use Firebase Auth client SDK for login,
+    // but here we issue a custom token for server-side login.
+    const user = await auth.getUserByEmail(email);
+
+    // In real setup, verify password with Firebase Auth client side.
+    // For server, issue custom token:
+    const customToken = await auth.createCustomToken(user.uid);
+
+    res.status(200).json({
+      message: "Login successful",
+      token: customToken,
+      user: {
+        uid: user.uid,
+        email: user.email,
+        name: user.displayName,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: error.message });
+  }
+});

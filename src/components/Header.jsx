@@ -27,7 +27,6 @@ export default function Header() {
             <>
               <Button onClick={logout} className="ml-2">Logout</Button>
               <ProfileButton user={user} onUpdate={handleProfileUpdate} />
-
             </>
           ) : (
             <Link to="/login" className="text-cura-700 font-semibold">Login</Link>
