@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <AppLayout>
       <div className="p-6">
-        <h1 className="text-3xl font-bold mb-4">Select Your Regular Hospital</h1>
+        <h1 className="text-3xl font-bold mb-4">Select Your Cura 🍀</h1>
 
         <input
           type="text"

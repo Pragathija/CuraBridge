@@ -11,6 +11,9 @@ import { useAuth } from './context/auth'
 import Home from "./pages/Home"
 import HospitalProfile from "./pages/HospitalProfile"
 import Booking from './pages/Booking'
+import SelectRole from "./pages/SelectRole";
+import DoctorHome from './pages/DoctorHome'
+
 
 function Private({ children }) {
   const { token } = useAuth()
@@ -24,7 +27,10 @@ export default function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/" element={<Private><Home /></Private>} />
+      <Route path="/selectrole" element={<Private><SelectRole /></Private>} />
+
+      <Route path="/home" element={<Private><Home /></Private>} />
+      <Route path="/doctorhome" element={<Private><DoctorHome /></Private>} />
       <Route path="/hospital/:id" element={<Private><HospitalProfile /></Private>} />
 
       <Route path="/dashboard" element={<Private><Dashboard /></Private>} />
@@ -34,8 +40,11 @@ export default function App() {
       <Route path="/records" element={<Private><Records /></Private>} />
       <Route path="/settings" element={<Private><Settings /></Private>} />
       <Route path="/booking" element={<Booking />} />
+      
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      
+
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
 
   )

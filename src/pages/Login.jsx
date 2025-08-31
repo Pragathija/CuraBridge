@@ -27,7 +27,7 @@ export default function Login() {
       const user = userCredential.user;
       const token = await user.getIdToken();
       login({ email: user.email }, token);
-      navigate("/");
+      navigate("/selectrole");
     } catch (err) {
       alert(err.message);
     }
@@ -41,7 +41,7 @@ export default function Login() {
       const user = result.user;
       const token = await user.getIdToken();
       login({ email: user.email }, token);
-      navigate("/");
+      navigate("/selectrole");
     } catch (err) {
       alert(err.message);
     }
@@ -55,7 +55,7 @@ export default function Login() {
       const user = result.user;
       const token = await user.getIdToken();
       login({ email: user.email, name: user.displayName }, token);
-      navigate('/');
+      navigate('/selectrole');
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +69,7 @@ export default function Login() {
       const user = result.user;
       const token = await user.getIdToken();
       login({ email: user.email, name: user.displayName }, token);
-      navigate('/');
+      navigate('/selectrole');
     } catch (error) {
       console.error(error);
     }

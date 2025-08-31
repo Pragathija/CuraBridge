@@ -4,7 +4,7 @@ import Button from '../components/Button'
 import { useAuth } from '../context/auth'
 import { auth } from './firebase'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithPopup } from "firebase/auth"
-
+import { doc, setDoc } from "firebase/firestore";
 
 export default function Signup() {
   const [email, setEmail] = useState('')
@@ -26,7 +26,7 @@ export default function Signup() {
       const user = userCredential.user
       const token = await user.getIdToken()
       login({ email: user.email, role }, token)
-      navigate("/")
+      navigate("/selectrole");
     } catch (err) {
       setError(err.message)
     }
@@ -39,7 +39,7 @@ export default function Signup() {
       const user = result.user;
       const token = await user.getIdToken()
       login({ email: user.email }, token);
-      navigate("/");
+      navigate("/selectrole");
     } catch (err) {
       alert(err.message);
     }
@@ -52,7 +52,7 @@ export default function Signup() {
       const user = result.user;
       const token = await user.getIdToken()
       login({ email: user.email, name: user.displayName }, token);
-      navigate('/');
+      navigate('/selectrole');
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +65,7 @@ export default function Signup() {
       const user = result.user;
       const token = await user.getIdToken()
       login({ email: user.email, name: user.displayName }, token);
-      navigate('/');
+      navigate('/selectrole');
     } catch (error) {
       console.error(error);
     }
