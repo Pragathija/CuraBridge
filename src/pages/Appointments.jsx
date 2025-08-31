@@ -39,8 +39,13 @@ export default function Appointments() {
               <span className="text-sm rounded-full px-3 py-1 bg-cura-50 text-cura-700">{a.status}</span>
             </div>
           ))}
+
         </div>
+
       </Card>
+      <br></br>
+      <br></br>
+      <br></br>
     </AppLayout>
   )
 }
