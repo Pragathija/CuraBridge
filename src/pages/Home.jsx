@@ -1,10 +1,6 @@
-import { useNavigate } from 'react-router-dom'
-import AppLayout from '../layouts/AppLayout'
-import VitalCard from '../components/VitalCard'
-import VitalsChart from '../components/VitalsChart'
-import { useEffect, useState } from 'react'
-import { HealthAPI } from '../services/api'
-import { Card, CardHeader } from '../components/Card'
+import { useNavigate } from "react-router-dom";
+import AppLayout from "../layouts/AppLayout";
+import { useState } from "react";
 
 const hospitalsData = [
   { id: 1, name: "City Care Hospital", location: "Chennai", specialties: ["Cardiology", "Orthopedics"] },
@@ -58,11 +54,9 @@ const Home = () => {
                 Specialties: {hospital.specialties.join(", ")}
               </p>
             </div>
-
           ))}
         </div>
       </div>
-
     </AppLayout>
   );
 };

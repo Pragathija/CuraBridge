@@ -6,131 +6,107 @@ export default function CommonHome() {
 
   return (
     <AppLayout>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 to-green-200 text-cura-700">
+
         {/* Header */}
-        <header className="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Cura Project</h1>
-          <nav className="space-x-6">
-            <button
-              onClick={() => window.scrollTo(0, 0)}
-              className="hover:underline"
-            >
-              Home
-            </button>
-            <button
-              onClick={() =>
-                document.getElementById("partners").scrollIntoView({
-                  behavior: "smooth",
-                })
-              }
-              className="hover:underline"
-            >
-              Partners
-            </button>
-            <button
-              onClick={() =>
-                document.getElementById("about").scrollIntoView({
-                  behavior: "smooth",
-                })
-              }
-              className="hover:underline"
-            >
-              About Us
-            </button>
-            <button
-              onClick={() => navigate("/login")}
-              className="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-100"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => navigate("/signup")}
-              className="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-100"
-            >
-              Signup
-            </button>
-            <button
-              onClick={() => navigate("/pharmacy")}
-              className="bg-white text-blue-600 px-3 py-1 rounded hover:bg-gray-100"
-            >
-              Pharmacy
-            </button>
-          </nav>
+        <header className="bg-cura-600 text-white p-4 shadow-md flex justify-center">
+          <h1 className="text-3xl font-extrabold tracking-wide animate-pulse">Cura Project</h1>
         </header>
 
-        {/* Hero Section */}
-        <section className="flex-1 flex flex-col justify-center items-center text-center p-10 bg-gradient-to-r from-blue-50 to-blue-100">
-          <h2 className="text-4xl font-bold mb-4">Welcome to Cura</h2>
-          <p className="text-lg max-w-2xl">
-            Cura is a trusted healthcare management system connecting doctors,
-            patients, and pharmacies seamlessly. Our mission is to make
-            healthcare accessible and reliable for everyone.
+        {/* Hero Section with Hospitals Button */}
+        <section className="flex-1 flex flex-col justify-center items-center text-center p-10 bg-gradient-to-r from-green-50 to-green-100">
+          <h2 className="text-4xl font-bold mb-4 drop-shadow-lg">Welcome to Cura</h2>
+          <p className="text-lg max-w-2xl mb-6">
+            Cura connects doctors, patients, and pharmacies with seamless, secure healthcare experiences.
+            Accessible. Reliable. For everyone.
           </p>
+          <button
+            onClick={() => navigate('/home')} // Navigate to Hospitals page
+            className="bg-cura-600 hover:bg-green-700 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg transition transform hover:scale-105"
+          >
+            Hospitals
+          </button>
         </section>
 
         {/* Vision & Mission */}
-        <section className="p-10 bg-white text-center">
+        <section className="p-10 bg-white text-center text-green-700">
           <h3 className="text-2xl font-semibold mb-4">Our Vision & Mission</h3>
-          <p className="max-w-3xl mx-auto text-gray-700">
-            At Cura, our vision is to revolutionize healthcare by bridging the
-            gap between patients, doctors, and hospitals. Our mission is to
-            deliver trustworthy, accessible, and affordable healthcare services
-            powered by technology.
+          <p className="max-w-3xl mx-auto">
+            We bridge gaps between patients and providers. Trust, accessibility, and technology-driven care.
           </p>
         </section>
 
-        {/* Partners Section */}
-        <section id="partners" className="p-10 bg-gray-50">
-          <h3 className="text-2xl font-semibold text-center mb-6">
-            Our Partner Hospitals
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-              <h4 className="font-bold">CityCare Hospital</h4>
-              <p className="text-gray-600">Specialized in Cardiology & Neurology</p>
+        {/* Partners Grid with Hospitals */}
+        <section id="partners" className="p-10 bg-green-50">
+          <h3 className="text-2xl font-semibold text-center mb-6">Our Partner Hospitals</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {["CityCare Hospital", "MediTrust Clinic", "Wellness MultiCare"].map((name, idx) => (
+              <div key={name} className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                <img src={`https://placehold.co/80x80?text=${name}`} alt="Hospital Logo" className="mx-auto mb-3 rounded-full shadow" />
+                <h4 className="font-bold mb-2">{name}</h4>
+                <p className="text-sm text-gray-500">
+                  {idx === 0 && "Specialized in Cardiology & Neurology"}
+                  {idx === 1 && "Your family’s health partner"}
+                  {idx === 2 && "Advanced surgical & emergency care"}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* About & Testimonials Section */}
+        <section id="about" className="p-10 bg-white text-center text-green-700">
+          <h3 className="text-2xl font-semibold mb-4">About Us</h3>
+          <p className="max-w-3xl mx-auto mb-6">
+            Built with trust, transparency, and innovation. Doctors and patients rely on Cura for secure healthcare management and communication.
+          </p>
+          <h4 className="text-xl font-semibold mb-3">Testimonials</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="p-6 bg-green-50 rounded-lg shadow flex items-center space-x-4">
+              <img src="https://placehold.co/48x48?text=A" alt="Dr Anita Sharma" className="rounded-full" />
+              <div>
+                <p className="italic mb-1">"Cura has transformed the way I connect with my patients. Trust and ease of use is unmatched."</p>
+                <div className="flex items-center">
+                  <span className="font-bold">— Dr. Anita Sharma</span>
+                  <span className="ml-2 text-yellow-500">★★★★★</span>
+                </div>
+              </div>
             </div>
-            <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-              <h4 className="font-bold">MediTrust Clinic</h4>
-              <p className="text-gray-600">Your family’s health partner</p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-              <h4 className="font-bold">Wellness MultiCare</h4>
-              <p className="text-gray-600">Advanced surgical & emergency care</p>
+            <div className="p-6 bg-green-50 rounded-lg shadow flex items-center space-x-4">
+              <img src="https://placehold.co/48x48?text=R" alt="Rajesh Kumar" className="rounded-full" />
+              <div>
+                <p className="italic mb-1">"I feel secure and connected. Cura has made healthcare simpler."</p>
+                <div className="flex items-center">
+                  <span className="font-bold">— Patient Rajesh Kumar</span>
+                  <span className="ml-2 text-yellow-500">★★★★★</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* About Us */}
-        <section id="about" className="p-10 bg-white text-center">
-          <h3 className="text-2xl font-semibold mb-4">About Us</h3>
-          <p className="max-w-3xl mx-auto text-gray-700 mb-6">
-            Cura is built on trust, transparency, and innovation. Doctors and
-            patients alike rely on us for secure healthcare management. Our
-            platform ensures reliable communication and efficient care delivery.
-          </p>
-
-          <h4 className="text-xl font-semibold mb-3">Testimonials</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 bg-gray-50 rounded-lg shadow">
-              <p className="italic text-gray-600">
-                "Cura has transformed the way I connect with my patients. The
-                trust and ease of use is unmatched."
-              </p>
-              <h5 className="mt-3 font-bold">— Dr. Anita Sharma</h5>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-lg shadow">
-              <p className="italic text-gray-600">
-                "I feel more secure and connected with my doctor through Cura.
-                It has made healthcare simpler."
-              </p>
-              <h5 className="mt-3 font-bold">— Patient Rajesh Kumar</h5>
-            </div>
+        {/* Developers Section */}
+        <section className="p-10 bg-green-50 text-center text-green-700">
+          <h3 className="text-2xl font-semibold mb-4">App Developers</h3>
+          <div className="flex flex-wrap justify-center gap-6 max-w-2xl mx-auto">
+            {["Pragathija", "Sathiya", "Bala Nithya", "Barath Kumar"].map(name => (
+              <div key={name} className="bg-white p-4 rounded-lg shadow text-center">
+                <img src={`https://placehold.co/64x64?text=${name}`} alt={name} className="mx-auto mb-2 rounded-full border-2 border-green-200" />
+                <span className="font-bold block mb-1">{name}</span>
+                <a href="#" className="text-green-600 text-xs hover:underline">Visit Profile</a>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="bg-blue-600 text-white text-center p-4 mt-auto">
+        <footer className="bg-cura-600 text-white text-center p-4 mt-auto flex flex-col items-center space-y-2">
           <p>© 2025 Cura Project. All rights reserved.</p>
+          <div>
+            <a href="#" className="mx-2 hover:text-green-300">Facebook</a>
+            <a href="#" className="mx-2 hover:text-green-300">Twitter</a>
+            <a href="#" className="mx-2 hover:text-green-300">Support</a>
+          </div>
         </footer>
       </div>
     </AppLayout>
