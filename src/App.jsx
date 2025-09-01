@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Appointments from './pages/Appointments';
@@ -12,6 +13,24 @@ import Home from './pages/Home';
 import HospitalProfile from './pages/HospitalProfile';
 import Booking from './pages/Booking';
 import CommonHome from './pages/CommonHome'; // Import CommonHome
+=======
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+import Appointments from './pages/Appointments'
+import Medications from './pages/Medications'
+import Alerts from './pages/Alerts'
+import Records from './pages/Records'
+import Settings from './pages/Settings'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import { useAuth } from './context/auth'
+import Home from "./pages/Home"
+import HospitalProfile from "./pages/HospitalProfile"
+import Booking from './pages/Booking'
+import SelectRole from "./pages/SelectRole";
+import DoctorHome from './pages/DoctorHome'
+
+>>>>>>> 6d87daa34755e29f5aa2341355727c62c7e38e40
 
 function Private({ children }) {
   const { token } = useAuth();
@@ -21,10 +40,14 @@ function Private({ children }) {
 
 export default function App() {
   return (
+
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/" element={<Private><Home /></Private>} />
+      <Route path="/selectrole" element={<Private><SelectRole /></Private>} />
+
+      <Route path="/home" element={<Private><Home /></Private>} />
+      <Route path="/doctorhome" element={<Private><DoctorHome /></Private>} />
       <Route path="/hospital/:id" element={<Private><HospitalProfile /></Private>} />
       <Route path="/common-home" element={<CommonHome />} /> {/* Add route for CommonHome */}
 
@@ -35,8 +58,16 @@ export default function App() {
       <Route path="/records" element={<Private><Records /></Private>} />
       <Route path="/settings" element={<Private><Settings /></Private>} />
       <Route path="/booking" element={<Booking />} />
+      
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      
+
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
+<<<<<<< HEAD
   );
+=======
+
+  )
+>>>>>>> 6d87daa34755e29f5aa2341355727c62c7e38e40
 }

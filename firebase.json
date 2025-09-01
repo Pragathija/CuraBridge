@@ -1,0 +1,16 @@
+{
+  "emulators": {
+    "dataconnect": {
+      "dataDir": "dataconnect/.dataconnect/pgliteData"
+    }
+  },
+  "dataconnect": {
+    "source": "dataconnect"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "database": {
+    "rules": "I want the whenever the user register to a web their data has to stored for login credential if the mail with password match means they are allowed to move futhur."
+  }
+}

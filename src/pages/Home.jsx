@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout";
 import { useState } from "react";
+=======
+import { useNavigate } from 'react-router-dom'
+import AppLayout from '../layouts/AppLayout'
+import { useEffect, useState } from 'react'
+>>>>>>> 6d87daa34755e29f5aa2341355727c62c7e38e40
 
 const hospitalsData = [
   { id: 1, name: "City Care Hospital", location: "Chennai", specialties: ["Cardiology", "Orthopedics"] },
@@ -31,7 +37,7 @@ const Home = () => {
   return (
     <AppLayout>
       <div className="p-6">
-        <h1 className="text-3xl font-bold mb-4">Select Your Regular Hospital</h1>
+        <h1 className="text-3xl font-bold mb-4">Select Your Cura 🍀</h1>
 
         <input
           type="text"
@@ -46,7 +52,7 @@ const Home = () => {
             <div
               key={hospital.id}
               onClick={() => handleSelect(hospital.id)}
-              className="p-4 bg-white shadow rounded-lg cursor-pointer hover:shadow-lg transition"
+              className="p-8 bg-white shadow rounded-lg cursor-pointer hover:shadow-lg transition"
             >
               <h2 className="text-xl font-semibold">{hospital.name}</h2>
               <p className="text-gray-600">{hospital.location}</p>
@@ -56,6 +62,8 @@ const Home = () => {
             </div>
           ))}
         </div>
+        <br></br>
+        <br></br>
       </div>
     </AppLayout>
   );

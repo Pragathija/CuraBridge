@@ -12,6 +12,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
     "axios": "^1.7.2",
     "bcryptjs": "^3.0.2",
     "clsx": "^2.1.1",
@@ -23,9 +24,10 @@
     "mongoose": "^8.18.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^6.26.1",
     "react-select": "^5.10.2",
-    "recharts": "^2.12.7",
+    "recharts": "^2.15.4",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
