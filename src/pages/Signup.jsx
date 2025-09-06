@@ -4,7 +4,6 @@ import Button from '../components/Button'
 import { useAuth } from '../context/auth'
 import { auth } from './firebase'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithPopup } from "firebase/auth"
-import { doc, setDoc } from "firebase/firestore";
 
 export default function Signup() {
   const [email, setEmail] = useState('')
@@ -89,14 +88,6 @@ export default function Signup() {
         <label className="block">
           <span className="text-sm text-slate-600">Confirm Password</span>
           <input type="password" className="mt-1 w-full rounded-xl border px-3 py-2" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required placeholder="Confirm your Password"/>
-        </label>
-
-        <label className="block">
-          <span className="text-sm text-slate-600">Role</span>
-          <select value={role} onChange={e => setRole(e.target.value)} className="mt-1 w-full rounded-xl border px-3 py-2">
-            <option value="customer">Patient</option>
-            <option value="owner">Doctor</option>
-          </select>
         </label>
 
         {error && <div className="text-red-500 text-sm">{error}</div>}

@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
-import AppLayout from "../layouts/AppLayout";
-import { useState } from "react";
-=======
+
 import { useNavigate } from 'react-router-dom'
 import AppLayout from '../layouts/AppLayout'
 import { useEffect, useState } from 'react'
->>>>>>> 6d87daa34755e29f5aa2341355727c62c7e38e40
 
 const hospitalsData = [
   { id: 1, name: "City Care Hospital", location: "Chennai", specialties: ["Cardiology", "Orthopedics"] },

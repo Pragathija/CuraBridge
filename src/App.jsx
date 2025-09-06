@@ -1,19 +1,4 @@
-<<<<<<< HEAD
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Appointments from './pages/Appointments';
-import Medications from './pages/Medications';
-import Alerts from './pages/Alerts';
-import Records from './pages/Records';
-import Settings from './pages/Settings';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import { useAuth } from './context/auth';
-import Home from './pages/Home';
-import HospitalProfile from './pages/HospitalProfile';
-import Booking from './pages/Booking';
-import CommonHome from './pages/CommonHome'; // Import CommonHome
-=======
+import CommonHome from './pages/CommonHome'; 
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Appointments from './pages/Appointments'
@@ -30,7 +15,7 @@ import Booking from './pages/Booking'
 import SelectRole from "./pages/SelectRole";
 import DoctorHome from './pages/DoctorHome'
 
->>>>>>> 6d87daa34755e29f5aa2341355727c62c7e38e40
+
 
 function Private({ children }) {
   const { token } = useAuth();
@@ -64,10 +49,5 @@ export default function App() {
 
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
-<<<<<<< HEAD
   );
-=======
-
-  )
->>>>>>> 6d87daa34755e29f5aa2341355727c62c7e38e40
 }

@@ -9,8 +9,14 @@ export default function CommonHome() {
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-green-50 to-green-200 text-cura-700">
 
         {/* Header */}
-        <header className="bg-cura-600 text-white p-4 shadow-md flex justify-center">
-          <h1 className="text-3xl font-extrabold tracking-wide animate-pulse">Cura Project</h1>
+        <header className="bg-cura-600 text-white p-4 shadow-md flex items-center justify-center space-x-3">
+          {/* Cura Logo */}
+          <img src="../CURA.png" alt="Cura Logo" className="w-10 h-10 rounded-full shadow-md" />
+
+          {/* Cura Project Name */}
+          <h1 className="text-3xl font-extrabold tracking-wide animate-pulse">
+            Cura Project
+          </h1>
         </header>
 
         {/* Hero Section with Hospitals Button */}
@@ -63,7 +69,7 @@ export default function CommonHome() {
           <h4 className="text-xl font-semibold mb-3">Testimonials</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="p-6 bg-green-50 rounded-lg shadow flex items-center space-x-4">
-              <img src="https://placehold.co/48x48?text=A" alt="Dr Anita Sharma" className="rounded-full" />
+              <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Dr Anita Sharma" className="rounded-full" />
               <div>
                 <p className="italic mb-1">"Cura has transformed the way I connect with my patients. Trust and ease of use is unmatched."</p>
                 <div className="flex items-center">
@@ -72,8 +78,8 @@ export default function CommonHome() {
                 </div>
               </div>
             </div>
-            <div className="p-6 bg-green-50 rounded-lg shadow flex items-center space-x-4">
-              <img src="https://placehold.co/48x48?text=R" alt="Rajesh Kumar" className="rounded-full" />
+            <div className="p-6 bg-green-50 rounded-lg shadow flex items-center space-x-4">              
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rajesh Kumar" className="rounded-full" />
               <div>
                 <p className="italic mb-1">"I feel secure and connected. Cura has made healthcare simpler."</p>
                 <div className="flex items-center">
