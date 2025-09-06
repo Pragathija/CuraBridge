@@ -178,12 +178,12 @@ const HospitalProfile = () => {
   const handleOldPatientSubmit = (e) => {
     e.preventDefault();
     if (!patientID || !formData.password) {
-      setSuccessMessage("⚠️ Please enter Patient ID and Password!");
+      setSuccessMessage("⚠ Please enter Patient ID and Password!");
       return;
     }
     setSuccessMessage("✅ Login Successful! Redirecting...");
     setTimeout(
-      () => navigate(`/hospital/${hospital.id}/dashboard/${patientID}`),
+      () => navigate(`/patient/${patientID}`),
       1500
     );
   };
@@ -334,7 +334,7 @@ const HospitalProfile = () => {
                       <textarea
                         key={i}
                         placeholder={field.placeholder}
-                        className={`w-full border border-cura-300 focus:border-cura-500 focus:ring focus:ring-cura-200 p-3 rounded-lg col-span-${field.span || 1}`}
+                        className="{`w-full border border-cura-300 focus:border-cura-500 focus:ring focus:ring-cura-200 p-3 rounded-lg col-span-${field.span || 1}`}"
                         value={formData[field.name]}
                         onChange={(e) =>
                           setFormData({ ...formData, [field.name]: e.target.value })
@@ -418,7 +418,7 @@ const HospitalProfile = () => {
             {/* Success/Error Message */}
             {successMessage && (
               <div
-                className={`mt-4 p-3 rounded-lg text-center font-medium ${successMessage.includes("✅")
+                className={`mt-4 p-3 rounded-lg text-center font-medium ${successMessage.includes("Successfully registered")
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-700"
                   }`}

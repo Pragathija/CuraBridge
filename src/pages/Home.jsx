@@ -1,3 +1,4 @@
+
 import { useNavigate } from 'react-router-dom'
 import AppLayout from '../layouts/AppLayout'
 import { useEffect, useState } from 'react'
@@ -54,13 +55,11 @@ const Home = () => {
                 Specialties: {hospital.specialties.join(", ")}
               </p>
             </div>
-
           ))}
         </div>
         <br></br>
         <br></br>
       </div>
-
     </AppLayout>
   );
 };

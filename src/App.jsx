@@ -1,3 +1,4 @@
+import CommonHome from './pages/CommonHome'; 
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Appointments from './pages/Appointments'
@@ -15,10 +16,11 @@ import SelectRole from "./pages/SelectRole";
 import DoctorHome from './pages/DoctorHome'
 
 
+
 function Private({ children }) {
-  const { token } = useAuth()
-  if (!token) return <Navigate to="/login" replace />
-  return children
+  const { token } = useAuth();
+  if (!token) return <Navigate to="/login" replace />;
+  return children;
 }
 
 export default function App() {
@@ -32,6 +34,7 @@ export default function App() {
       <Route path="/home" element={<Private><Home /></Private>} />
       <Route path="/doctorhome" element={<Private><DoctorHome /></Private>} />
       <Route path="/hospital/:id" element={<Private><HospitalProfile /></Private>} />
+      <Route path="/common-home" element={<CommonHome />} /> {/* Add route for CommonHome */}
 
       <Route path="/dashboard" element={<Private><Dashboard /></Private>} />
       <Route path="/appointments" element={<Private><Appointments /></Private>} />
@@ -46,6 +49,5 @@ export default function App() {
 
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
-
-  )
+  );
 }
